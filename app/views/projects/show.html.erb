@@ -1,3 +1,40 @@
 <%= @project.title %>
+
+<h2>Tasks</h2>
+<% @project.tasks.each do |task| %>
+  <p>
+    <strong>Title:</strong>
+    <%= task.title %>
+  </p>
+
+  <p>
+    <strong>Deadline:</strong>
+    <%= task.date %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= task.status %>
+  </p>
+<% end %>
+
+<h2>Add new task:</h2>
+<%= form_with(model: [ @project, @project.tasks.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :date %><br>
+    <%= form.date_field :date %>
+  </p>
+  <p>
+    <%= form.label :status %><br>
+    <%= form.check_box :status %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 <%= link_to 'Edit', edit_project_path(@project) %>
 <%= link_to 'Back', projects_path %>
