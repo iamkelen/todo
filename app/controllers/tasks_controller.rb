@@ -1,7 +1,4 @@
 class TasksController < ApplicationController
-  def index
-    @tasks = Task.all
-  end
 
   def new
     @task = Task.new
@@ -9,11 +6,11 @@ class TasksController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @task = @project.tasks.create(task_params)
-      if task.valid?
+    @task = Task.create(permitted_params.merge(project_id: params[:project_id]))
+      if @task.valid?
         redirect_to project_path(@project), notice: 'Task was successfully created.'
       else
-        render: new
+        render :new
       end
   end
 
@@ -24,17 +21,14 @@ class TasksController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    @task = @project.tasks.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
-    @task = @project.tasks.find(params[:id])
-      if @task.update(permitted_params)
-        redirect_to project_task_path(@project), notice: 'Task was successfully updated.'
-      else
-        render :edit
-      end
+    if @task.update(permitted_params)
+      redirect_to task_path(@task), notice: 'Task was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -46,7 +40,7 @@ class TasksController < ApplicationController
 
   private
 
-    def task_params
+    def permitted_params
       params.require(:task).permit(:title, :date, :status)
     end
 end

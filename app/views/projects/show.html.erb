@@ -17,9 +17,10 @@
     <%= task.status %>
   </p>
 <% end %>
+<%= link_to 'Edit', edit_project_task_path(@project) %>
 
 <h2>Add new task:</h2>
-<%= form_with(model: [ @project, @project.tasks.build ], local: true) do |form| %>
+<%= form_with(model: @task, local: true) do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
