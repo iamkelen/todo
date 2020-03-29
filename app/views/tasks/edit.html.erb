@@ -1,5 +1,5 @@
 <h2>Editing task:</h2>
-<%= form_with(model: @task, local: true) do |form| %>
+<%= form_with(model: [@project, @project.tasks.new], local: true) do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -17,4 +17,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', project_path(@project) %>
+<%= link_to 'Back', projects_path(@project) %>

@@ -26,11 +26,11 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if @project.update(permitted_params)
-      redirect_to project_path(@project), notice: 'Project was successfully updated.'
-    else
-      render :edit
-    end
+      if @project.update(permitted_params)
+        redirect_to project_path(@project), notice: 'Project was successfully updated.'
+      else
+        render :edit
+      end
   end
 
   def destroy
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:project).permit(:title)
+    params.require(:project).permit(:title, :tasks)
   end
 
 end

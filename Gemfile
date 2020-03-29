@@ -15,6 +15,9 @@ gem 'devise'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
 end
 
 group :development do

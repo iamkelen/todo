@@ -17,10 +17,10 @@
     <%= task.status %>
   </p>
 <% end %>
-<%= link_to 'Edit', edit_project_task_path(@project) %>
+<%= link_to 'Edit', edit_task_path(@project) %>
 
 <h2>Add new task:</h2>
-<%= form_with(model: @task, local: true) do |form| %>
+<%= form_with(model: [@project, @project.tasks.new], local: true) do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -37,5 +37,6 @@
     <%= form.submit %>
   </p>
 <% end %>
+
 <%= link_to 'Edit', edit_project_path(@project) %>
 <%= link_to 'Back', projects_path %>
