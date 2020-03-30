@@ -1,5 +1,19 @@
 <h2>Editing task:</h2>
-<%= form_with(model: [@project, @project.tasks.new], local: true) do |form| %>
+<% if @task.errors.any? %>
+    <div>
+      <h2>
+        <%= pluralize(@task.errors.count, "error") %> prohibited
+        this task from being saved:
+      </h2>
+      <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_with(model: @task, local: true) do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -17,4 +31,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', projects_path(@project) %>
+<%= link_to 'Back', project_path(@task.project) %>

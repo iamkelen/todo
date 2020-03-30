@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
   def index
     @projects = Project.all
   end
@@ -17,15 +18,12 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
       if @project.update(permitted_params)
         redirect_to project_path(@project), notice: 'Project was successfully updated.'
       else
@@ -34,7 +32,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
     redirect_to projects_path
   end
@@ -43,6 +40,10 @@ class ProjectsController < ApplicationController
 
   def permitted_params
     params.require(:project).permit(:title, :tasks)
+  end
+
+  def find_project
+    @project = Project.find(params[:id])
   end
 
 end

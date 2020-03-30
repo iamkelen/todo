@@ -1,20 +1,8 @@
-<h2>Tasks</h2>
-<% @project.tasks.each do |task| %>
-  <p>
-    <strong>Title:</strong>
-    <%= task.title %>
-  </p>
+<%= @task.title %>
+<%= @task.date %>
+<%= @task.status %>
 
-  <p>
-    <strong>Deadline:</strong>
-    <%= task.date %>
-  </p>
+<%= link_to 'Edit', edit_task_path(@task) %>
+<%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-  <p>
-    <strong>Status:</strong>
-    <%= task.status %>
-  </p>
-<% end %>
-
-<%= link_to 'Edit', project_path(@project) %>
-<%= link_to 'Back', project_path(@project) %>
+<%= link_to 'Back', project_path(@task.project) %>

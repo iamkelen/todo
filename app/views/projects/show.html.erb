@@ -16,8 +16,10 @@
     <strong>Status:</strong>
     <%= task.status %>
   </p>
+
+  <%= link_to 'Edit', edit_task_path(task) %>
+  <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
-<%= link_to 'Edit', edit_task_path(@project) %>
 
 <h2>Add new task:</h2>
 <%= form_with(model: [@project, @project.tasks.new], local: true) do |form| %>
