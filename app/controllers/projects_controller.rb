@@ -1,7 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
+
   def index
-    @projects = Project.all
+    if current_user
+      @projects = current_user.projects
+    else
+      @projects = []
+    end
   end
 
   def new
@@ -10,8 +15,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.create(permitted_params)
+    @project.user_id = current_user.id
       if @project.valid?
-        redirect_to project_path(@project), notice: 'Project was successfully created.'
+        @project.save
+        redirect_to projects_path, notice: 'Project was successfully created.'
       else
         render :new
       end
