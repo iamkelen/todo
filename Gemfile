@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'gravtastic'
 
 group :development, :test do
   gem 'byebug'
