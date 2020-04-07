@@ -6,13 +6,15 @@ ruby '2.6.5'
 gem 'rails'
 gem 'pg'
 gem 'puma'
-gem 'sass-rails'
 gem 'webpacker'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'gravtastic'
+gem 'bootstrap'
+gem 'sass-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug'

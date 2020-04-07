@@ -2,11 +2,7 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_user
-      @projects = current_user.projects
-    else
-      @projects = []
-    end
+    @projects = current_user.projects
   end
 
   def new
@@ -14,7 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(permitted_params)
+    @project = Project.create(project_params)
     @project.user_id = current_user.id
       if @project.valid?
         @project.save
@@ -31,8 +27,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
-      if @project.update(permitted_params)
-        redirect_to project_path(@project), notice: 'Project was successfully updated.'
+      if @project.update(project_params)
+        redirect_to projects_path(@project), notice: 'Project was successfully updated.'
       else
         render :edit
       end
@@ -45,7 +41,7 @@ class ProjectsController < ApplicationController
 
   private
 
-  def permitted_params
+  def project_params
     params.require(:project).permit(:title, :tasks)
   end
 

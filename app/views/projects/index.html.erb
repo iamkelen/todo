@@ -1,12 +1,63 @@
-<h1>My ToDo List</h1>
-<h3>Projects</h3>
-<%= link_to 'New', new_project_path(@project) %>
+<div class='row justify-content-center'>
+  <div class='col-8'>
 
-<% @projects.each do |project| %>
-    <div>
-      <%= project.title %>
-      <%= link_to 'Show', project_path(project) %>
-      <%= link_to 'Edit', edit_project_path(project) %>
-      <%= link_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class='text-center'>
+      <h2>SIMPLE TODO LISTS</h2>
+      <h4>FROM RUBYGARAGE</h4>
     </div>
-  <% end %>
+    <br />
+
+    <% @projects.each do |project| %>
+      <div class="card mt-4">
+        <div class="card-header text-white bg-primary">
+          <%= fa_icon "check" %>
+          <%= project.title %>
+          <div class="float-right">
+            <%= link_to(content_tag(:i, nil, class: 'text-white fas fa-edit fa'), edit_project_path(project)) %>
+            <%= link_to(content_tag(:i, nil, class: 'text-white fa fa-trash-o'), project_path(project), method: :delete, data: { confirm: 'Are you sure?' }) %>
+          </div>
+        </div>
+        <div class="card-header text-white bg-light">
+          <%= form_with(model: [project, Task], local: true) do |form| %>
+            <div class="form-row align-items-center">
+              <div class="col-8">
+                <%= form.label :title, for: 'inputAddTask', class: 'sr-only' %>
+                <%= form.text_field :title, id: 'inputAddTask', class: 'form-control', placeholder: 'Start typing here to create a task...' %>
+              </div>
+
+              <div class="col-2">
+                <%= form.label :date, for: 'inputDate', class: 'sr-only' %>
+                <%= form.date_field :date, id: 'inputDate', class: 'form-control' %>
+              </div>
+
+              <div class="col-2 text-right">
+                <%= form.submit 'Add Task', class: 'btn btn-success' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% project.tasks.each do |task| %>
+        <div class="card">
+          <div class="card-body">
+
+            <%= task.title %>
+            <div class="float-right">
+              <%= task.date %>
+
+              <%= link_to(content_tag(:i, nil, class: 'text-body fas fa-edit fa ml-3'), edit_task_path(task)) %>
+              <%= link_to(content_tag(:i, nil, class: 'text-body fa fa-trash-o'), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class='text-center m-5'>
+      <%= link_to 'Add TODO List', new_project_path(@project), class: 'btn btn-primary' %>
+    </div>
+
+    <p class="mt-5 mb-3 text-muted text-center">&copy; RubyGarage</p>
+
+  </div>
+</div>

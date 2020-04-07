@@ -1,27 +1,40 @@
-<h1>Editing Project</h1>
-<% if @project.errors.any? %>
-    <div>
-      <h2>
+<div class='row justify-content-center'>
+  <div class='col-6'>
+    <h2 class='text-center'>Edit Project</h2>
+
+    <% if @project.errors.any? %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+        <strong>
         <%= pluralize(@project.errors.count, "error") %> prohibited
         this project from being saved:
-      </h2>
-      <ul>
-        <% @project.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        </strong>
+
+        <ul>
+          <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    <% end %>
 
     <%= form_with(model: @project, local: true) do |form| %>
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
+      <div class='form-group'>
+        <%= form.label :title, for: 'title' %><br>
+        <%= form.text_field :title, id: 'title', class: 'form-control', autofocus: 'true' %>
+      </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+      <div class='text-center'>
+        <%= form.submit 'Update', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+      <br />
 
-<%= link_to 'Back', projects_path %>
+    <div class='text-center'>
+      <%= link_to 'Back', projects_path %>
+    </div>
+
+  </div>
+</div>
+
