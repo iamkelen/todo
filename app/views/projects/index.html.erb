@@ -6,6 +6,11 @@
       <h4>FROM RUBYGARAGE</h4>
     </div>
     <br />
+    <% if notice %>
+      <div class='alert alert-info'>
+    <%= notice %>
+      </div>
+    <% end %>
 
     <% @projects.each do |project| %>
       <div class="card mt-4">
@@ -13,8 +18,8 @@
           <%= fa_icon "check" %>
           <%= project.title %>
           <div class="float-right">
-            <%= link_to(content_tag(:i, nil, class: 'text-white fas fa-edit fa'), edit_project_path(project)) %>
-            <%= link_to(content_tag(:i, nil, class: 'text-white fa fa-trash-o'), project_path(project), method: :delete, data: { confirm: 'Are you sure?' }) %>
+            <%= link_to(content_tag(:i, nil, class: 'text-white fas fa-edit fa ml-1 mr-1'), edit_project_path(project)) %>
+            <%= link_to(content_tag(:i, nil, class: 'text-white fa fa-trash-o ml-1 mr-1'), project_path(project), method: :delete, data: { confirm: 'Are you sure?' }) %>
           </div>
         </div>
         <div class="card-header text-white bg-light">
@@ -40,13 +45,18 @@
       <% project.tasks.each do |task| %>
         <div class="card">
           <div class="card-body">
-
+            <%= check_box_tag 'accept' %>
             <%= task.title %>
             <div class="float-right">
               <%= task.date %>
-
-              <%= link_to(content_tag(:i, nil, class: 'text-body fas fa-edit fa ml-3'), edit_task_path(task)) %>
-              <%= link_to(content_tag(:i, nil, class: 'text-body fa fa-trash-o'), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }) %>
+              <%= link_to task_path(task, position: 'up'), method: :put do %>
+              <i class="text-body fas fa-chevron-up fa ml-3 mr-1"></i>
+              <% end %>
+              <%= link_to task_path(task, position: 'down'), method: :put do %>
+              <i class="text-body fas fa-chevron-down fa ml-1 mr-1"></i>
+              <% end %>
+              <%= link_to(content_tag(:i, nil, class: 'text-body fas fa-edit fa ml-1 mr-1'), edit_task_path(task)) %>
+              <%= link_to(content_tag(:i, nil, class: 'text-body fa fa-trash-o ml-1 mr-1'), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }) %>
             </div>
           </div>
         </div>

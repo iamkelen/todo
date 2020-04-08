@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_task, except: [:new, :create]
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new
@@ -22,11 +22,12 @@ class TasksController < ApplicationController
   end
 
   def update
-      if @task.update(task_params)
-        redirect_to projects_path(@task.project), notice: 'Task was successfully updated.'
-      else
-        render :edit
-      end
+    if params[:position].present? || @task.update(task_params)
+      @task.change_position(params[:position]) if params[:position].present?
+      redirect_to projects_path, notice: 'Task was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -37,7 +38,7 @@ class TasksController < ApplicationController
 private
 
 def task_params
-  params.require(:task).permit(:title, :date, :status)
+  params.require(:task).permit(:title, :date, :position)
 end
 
 def find_task

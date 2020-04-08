@@ -15,6 +15,7 @@ gem 'gravtastic'
 gem 'bootstrap'
 gem 'sass-rails'
 gem 'font-awesome-rails'
+gem 'acts_as_list'
 
 group :development, :test do
   gem 'byebug'

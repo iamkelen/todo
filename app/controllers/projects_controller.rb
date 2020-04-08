@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects
+    @tasks = Task.all.order(:position)
   end
 
   def new
