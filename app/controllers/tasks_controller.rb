@@ -35,6 +35,11 @@ class TasksController < ApplicationController
     redirect_to projects_path(@task.project)
   end
 
+  def complete
+    @task.update_attribute(:completed_at, Time.now)
+    redirect_to projects_path, notice: 'Task was successfully completed.'
+  end
+
 private
 
 def task_params

@@ -15,7 +15,6 @@
     <% @projects.each do |project| %>
       <div class="card mt-4">
         <div class="card-header text-white bg-primary">
-          <%= fa_icon "check" %>
           <%= project.title %>
           <div class="float-right">
             <%= link_to(content_tag(:i, nil, class: 'text-white fas fa-edit fa ml-1 mr-1'), edit_project_path(project)) %>
@@ -45,8 +44,13 @@
       <% project.tasks.each do |task| %>
         <div class="card">
           <div class="card-body">
-            <%= check_box_tag 'accept' %>
-            <%= task.title %>
+            <% if task.completed? %>
+              <%= link_to(content_tag(:i, nil, class: 'fa-check fa fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
+              <strike><%= task.title %></strike>
+            <% else %>
+              <%= link_to(content_tag(:i, nil, class: 'fa-circle-thin fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
+              <%= task.title %>
+            <% end %>
             <div class="float-right">
               <%= task.date %>
               <%= link_to task_path(task, position: 'up'), method: :put do %>
