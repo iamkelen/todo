@@ -16,6 +16,7 @@ gem 'bootstrap'
 gem 'sass-rails'
 gem 'font-awesome-rails'
 gem 'acts_as_list'
+gem 'rubocop'
 
 group :development, :test do
   gem 'byebug'

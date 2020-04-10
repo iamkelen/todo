@@ -15,11 +15,9 @@ class TasksController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if params[:position].present? || @task.update(task_params)
@@ -40,14 +38,13 @@ class TasksController < ApplicationController
     redirect_to projects_path, notice: 'Task was successfully completed.'
   end
 
-private
+  private
 
-def task_params
-  params.require(:task).permit(:title, :date, :position)
-end
+  def task_params
+    params.require(:task).permit(:title, :date, :position)
+  end
 
-def find_task
-  @task = Task.find(params[:id])
-end
-
+  def find_task
+    @task = Task.find(params[:id])
+  end
 end

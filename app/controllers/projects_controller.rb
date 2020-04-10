@@ -13,26 +13,24 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.create(project_params)
     @project.user_id = current_user.id
-      if @project.valid?
-        @project.save
-        redirect_to projects_path, notice: 'Project was successfully created.'
-      else
-        render :new
-      end
+    if @project.valid?
+      @project.save
+      redirect_to projects_path, notice: 'Project was successfully created.'
+    else
+      render :new
+    end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
-      if @project.update(project_params)
-        redirect_to projects_path(@project), notice: 'Project was successfully updated.'
-      else
-        render :edit
-      end
+    if @project.update(project_params)
+      redirect_to projects_path(@project), notice: 'Project was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -6,6 +6,7 @@
       <h4>FROM RUBYGARAGE</h4>
     </div>
     <br />
+
     <% if notice %>
       <div class='alert alert-info'>
     <%= notice %>
@@ -13,28 +14,28 @@
     <% end %>
 
     <% @projects.each do |project| %>
-      <div class="card mt-4">
-        <div class="card-header text-white bg-primary">
+      <div class='card mt-4'>
+        <div class='card-header text-white bg-primary'>
           <%= project.title %>
-          <div class="float-right">
+          <div class='float-right'>
             <%= link_to(content_tag(:i, nil, class: 'text-white fas fa-edit fa ml-1 mr-1'), edit_project_path(project)) %>
             <%= link_to(content_tag(:i, nil, class: 'text-white fa fa-trash-o ml-1 mr-1'), project_path(project), method: :delete, data: { confirm: 'Are you sure?' }) %>
           </div>
         </div>
-        <div class="card-header text-white bg-light">
+        <div class='card-header text-white bg-light'>
           <%= form_with(model: [project, Task], local: true) do |form| %>
-            <div class="form-row align-items-center">
-              <div class="col-8">
+            <div class='form-row align-items-center'>
+              <div class='col-8'>
                 <%= form.label :title, for: 'inputAddTask', class: 'sr-only' %>
                 <%= form.text_field :title, id: 'inputAddTask', class: 'form-control', placeholder: 'Start typing here to create a task...' %>
               </div>
 
-              <div class="col-2">
+              <div class='col-2'>
                 <%= form.label :date, for: 'inputDate', class: 'sr-only' %>
                 <%= form.date_field :date, id: 'inputDate', class: 'form-control' %>
               </div>
 
-              <div class="col-2 text-right">
+              <div class='col-2 text-right'>
                 <%= form.submit 'Add Task', class: 'btn btn-success' %>
               </div>
             </div>
@@ -42,8 +43,8 @@
         </div>
       </div>
       <% project.tasks.each do |task| %>
-        <div class="card">
-          <div class="card-body">
+        <div class='card'>
+          <div class='card-body'>
             <% if task.completed? %>
               <%= link_to(content_tag(:i, nil, class: 'fa-check fa fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
               <strike><%= task.title %></strike>
@@ -51,13 +52,13 @@
               <%= link_to(content_tag(:i, nil, class: 'fa-circle-thin fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
               <%= task.title %>
             <% end %>
-            <div class="float-right">
+            <div class='float-right'>
               <%= task.date %>
               <%= link_to task_path(task, position: 'up'), method: :put do %>
-              <i class="text-body fas fa-chevron-up fa ml-3 mr-1"></i>
+              <i class='text-body fas fa-chevron-up fa ml-3 mr-1'></i>
               <% end %>
               <%= link_to task_path(task, position: 'down'), method: :put do %>
-              <i class="text-body fas fa-chevron-down fa ml-1 mr-1"></i>
+              <i class='text-body fas fa-chevron-down fa ml-1 mr-1'></i>
               <% end %>
               <%= link_to(content_tag(:i, nil, class: 'text-body fas fa-edit fa ml-1 mr-1'), edit_task_path(task)) %>
               <%= link_to(content_tag(:i, nil, class: 'text-body fa fa-trash-o ml-1 mr-1'), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }) %>
@@ -71,7 +72,7 @@
       <%= link_to 'Add TODO List', new_project_path(@project), class: 'btn btn-primary' %>
     </div>
 
-    <p class="mt-5 mb-3 text-muted text-center">&copy; RubyGarage</p>
+    <p class='mt-5 mb-3 text-muted text-center'>&copy; RubyGarage</p>
 
   </div>
 </div>

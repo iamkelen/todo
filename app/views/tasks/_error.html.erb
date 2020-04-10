@@ -1,0 +1,16 @@
+<% if @task.errors.any? %>
+  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+
+    <strong>
+      <%= pluralize(@task.errors.count, 'error') %> prohibited
+      this task from being saved:
+    </strong>
+
+    <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  </div>
+<% end %>

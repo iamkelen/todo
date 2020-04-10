@@ -6,8 +6,8 @@ class Task < ApplicationRecord
   validate :future_date
 
   def change_position(position)
-    self.move_higher if position == 'up'
-    self.move_lower if position == 'down'
+    move_higher if position == 'up'
+    move_lower if position == 'down'
   end
 
   def completed?
