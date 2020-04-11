@@ -3,32 +3,32 @@
     <h2 class='text-center'>Log in</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class='form-group'>
+      <div class="form-group">
         <%= f.label :email, for: 'inputEmail' %><br />
-        <%= f.email_field :email, id: 'inputEmail', class: 'form-control', autofocus: true, autocomplete: 'email', placeholder: 'Email address' %>
-        <small id='emailHelp' class='form-text text-muted'>We'll never share your email with anyone else.</small>
+        <%= f.email_field :email, id: 'inputEmail', class: 'form-control', autofocus: true, autocomplete: "email", placeholder: 'Email address' %>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
 
-      <div class='form-group'>
+      <div class="form-group">
         <%= f.label :password, for: 'inputPassword' %><br />
-        <%= f.password_field :password, id: 'inputPassword', class: 'form-control', autocomplete: 'current-password', placeholder: 'Password' %>
+        <%= f.password_field :password, id: 'inputPassword', class: 'form-control', autocomplete: "current-password", placeholder: 'Password' %>
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div class='form-group form-check'>
+        <div class="form-group form-check">
           <%= f.check_box :remember_me, id: 'checkbox', class: 'form-check-input' %>
           <%= f.label :remember_me, for: 'checkbox' %>
         </div>
       <% end %>
 
       <div class='text-center'>
-        <%= f.submit 'Log in', class: 'btn btn-primary' %>
+        <%= f.submit "Log in", class: 'btn btn-primary' %>
       </div>
 
     <% end %>
 
     <div class='text-center mt-3'>
-      <%= render 'devise/shared/links' %>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

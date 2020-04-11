@@ -3,20 +3,20 @@
     <h2 class='text-center'>Forgot your password?</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render 'devise/shared/error_messages', resource: resource %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class='form-group'>
+      <div class="form-group">
         <%= f.label :email, for: 'inputEmail' %><br />
-        <%= f.email_field :email, id: 'inputEmail', class: 'form-control', autofocus: true, autocomplete: 'email', placeholder: 'Email address' %>
+        <%= f.email_field :email, id: 'inputEmail', class: 'form-control', autofocus: true, autocomplete: "email", placeholder: 'Email address' %>
       </div>
 
       <div class='text-center'>
-        <%= f.submit 'Send me reset password instructions', class: 'btn btn-primary' %>
+        <%= f.submit "Send me reset password instructions", class: 'btn btn-primary' %>
       </div>
     <% end %>
 
     <div class='text-center mt-3'>
-      <%= render 'devise/shared/links' %>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
