@@ -18,8 +18,8 @@
         <div class='card-header text-white bg-primary'>
           <%= project.title %>
           <div class='float-right'>
-            <%= link_to(content_tag(:i, nil, class: 'text-white fas fa-edit fa ml-1 mr-1'), edit_project_path(project)) %>
-            <%= link_to(content_tag(:i, nil, class: 'text-white fa fa-trash-o ml-1 mr-1'), project_path(project), method: :delete, data: { confirm: 'Are you sure?' }) %>
+            <%= link_to(content_tag(:i, nil, class: 'pr_edit-test text-white fas fa-edit fa ml-1 mr-1'), edit_project_path(project)) %>
+            <%= link_to(content_tag(:i, nil, class: 'pr_trash-test text-white fa fa-trash-o ml-1 mr-1'), project_path(project), method: :delete, data: { confirm: 'Are you sure?' }) %>
           </div>
         </div>
         <div class='card-header text-white bg-light'>
@@ -46,10 +46,10 @@
         <div class='card'>
           <div class='card-body'>
             <% if task.completed? %>
-              <%= link_to(content_tag(:i, nil, class: 'fa-check fa fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
+              <%= link_to(content_tag(:i, nil, class: 't_compl fa-check fa fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
               <strike><%= task.title %></strike>
             <% else %>
-              <%= link_to(content_tag(:i, nil, class: 'fa-circle-thin fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
+              <%= link_to(content_tag(:i, nil, class: 't_uncompl fa-circle-thin fa ml-1 mr-1'), complete_task_path(task.id), method: :patch) %>
               <%= task.title %>
             <% end %>
             <div class='float-right'>
@@ -60,8 +60,8 @@
               <%= link_to task_path(task, position: 'down'), method: :put do %>
               <i class='text-body fas fa-chevron-down fa ml-1 mr-1'></i>
               <% end %>
-              <%= link_to(content_tag(:i, nil, class: 'text-body fas fa-edit fa ml-1 mr-1'), edit_task_path(task)) %>
-              <%= link_to(content_tag(:i, nil, class: 'text-body fa fa-trash-o ml-1 mr-1'), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }) %>
+              <%= link_to(content_tag(:i, nil, class: 't_edit-test text-body fas fa-edit fa ml-1 mr-1'), edit_task_path(task)) %>
+              <%= link_to(content_tag(:i, nil, class: 't_trash-test text-body fa fa-trash-o ml-1 mr-1'), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }) %>
             </div>
           </div>
         </div>

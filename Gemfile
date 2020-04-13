@@ -25,6 +25,13 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'webdrivers'
+  gem 'ffaker'
+end
+
+group :test do
+  gem 'factory_bot_rails'
 end
 
 group :development do
