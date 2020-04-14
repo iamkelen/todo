@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_project_with_tasks, only: [:show, :edit, :update, :destroy]
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
@@ -41,9 +41,7 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:title, :tasks)
   end
 
-  def find_project_with_tasks
+  def find_project
     @project = current_user.projects.find(params[:id])
-    @tasks = @project.tasks
   end
-
 end

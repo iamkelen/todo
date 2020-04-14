@@ -29,6 +29,7 @@ RSpec.describe 'Creating Task', type: :system do
       fill_in 'Title', with: 'My edited task'
       click_button 'Update Task'
       expect(page).to have_content 'Task was successfully updated.'
+      sleep 1
       expect(page).to have_content 'My edited task'
     end
   end
