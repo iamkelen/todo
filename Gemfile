@@ -8,7 +8,6 @@ gem 'pg'
 gem 'puma'
 gem 'webpacker'
 gem 'turbolinks'
-gem 'jbuilder'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'gravtastic'

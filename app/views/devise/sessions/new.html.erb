@@ -2,6 +2,17 @@
   <div class='col-4'>
     <h2 class='text-center'>Log in</h2>
 
+    <% if notice %>
+      <div class='alert alert-info'>
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
         <%= f.label :email, for: 'inputEmail' %><br />

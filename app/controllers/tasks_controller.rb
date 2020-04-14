@@ -1,14 +1,13 @@
 class TasksController < ApplicationController
   before_action :find_task, except: [:new, :create]
   def new
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.new
+    @task = current_user.projects.find(params[:project_id]).tasks.new
   end
 
   def create
-    @project = Project.find(params[:project_id])
-    @task = Task.create(task_params.merge(project_id: params[:project_id]))
-    if @task.valid?
+    @project = current_user.projects.find(params[:project_id])
+    @task = @project.tasks.build(task_params)
+    if @task.save
       redirect_to projects_path(@project), notice: 'Task was successfully created.'
     else
       render :new
@@ -34,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task.update_attribute(:completed_at, Time.now)
+    @task.update(completed_at: Time.now)
     redirect_to projects_path, notice: 'Task was successfully completed.'
   end
 

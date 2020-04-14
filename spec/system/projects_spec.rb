@@ -21,11 +21,9 @@ RSpec.describe 'Creating Project', type: :system do
   end
 
   context 'when update an existing project' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
+    let(:project) { create :project }
     it 'successfully updates the project' do
-      sign_in user
-      project
+      sign_in project.user
       visit projects_path
       find(:css, 'i.pr_edit-test').click
       fill_in 'Title', with: 'My edited project'
@@ -36,10 +34,9 @@ RSpec.describe 'Creating Project', type: :system do
   end
 
   context 'when delete an existing project' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
+    let(:project) { create :project }
     it 'successfully deletes the project' do
-      sign_in user
+      sign_in project.user
       project
       visit projects_path
       accept_confirm do

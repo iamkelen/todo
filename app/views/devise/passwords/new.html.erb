@@ -2,6 +2,17 @@
   <div class='col-4'>
     <h2 class='text-center'>Forgot your password?</h2>
 
+    <% if notice %>
+      <div class='alert alert-info'>
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 

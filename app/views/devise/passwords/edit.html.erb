@@ -2,6 +2,17 @@
   <div class='col-6'>
     <h2 class='text-center'>Change your password</h2>
 
+    <% if notice %>
+      <div class='alert alert-info'>
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <%= f.hidden_field :reset_password_token %>

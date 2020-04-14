@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Creating Task', type: :system do
   context 'when create a new task' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
+    let(:project) { create :project }
     it 'creates a task' do
-      sign_in user
-      project
+      sign_in project.user
       visit projects_path
       fill_in 'inputAddTask', with: 'My first task'
       fill_in 'inputDate', with: Date.tomorrow
@@ -15,8 +13,7 @@ RSpec.describe 'Creating Task', type: :system do
     end
 
     it 'returns validation errors' do
-      sign_in user
-      project
+      sign_in project.user
       visit projects_path
       click_button 'Add Task'
       expect(page).to have_content 'can\'t be blank'
@@ -24,13 +21,9 @@ RSpec.describe 'Creating Task', type: :system do
   end
 
   context 'when update an existing task' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
-    let(:task) { create(:task, project: project) }
+    let(:task) { create :task }
     it 'successfully updates the task' do
-      sign_in user
-      project
-      task
+      sign_in task.project.user
       visit projects_path
       find(:css, 'i.t_edit-test').click
       fill_in 'Title', with: 'My edited task'
@@ -41,13 +34,9 @@ RSpec.describe 'Creating Task', type: :system do
   end
 
   context 'when delete an existing task' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
-    let(:task) { create(:task, project: project) }
+    let(:task) { create :task }
     it 'successfully deletes the task' do
-      sign_in user
-      project
-      task
+      sign_in task.project.user
       visit projects_path
       accept_confirm do
         find(:css, 'i.t_trash-test').click
@@ -57,28 +46,9 @@ RSpec.describe 'Creating Task', type: :system do
   end
 
   context 'when mark an existing task as complete' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
-    let(:task) { create(:task, project: project) }
+    let(:task) { create :task }
     it 'successfully completes the task' do
-      sign_in user
-      project
-      task
-      visit projects_path
-      find(:css, 'i.t_uncompl').click
-      expect(page).to have_content 'Task was successfully completed.'
-    end
-  end
-
-  context 'when change position for existing task' do
-    let(:user) { create :user }
-    let(:project) { create :project, user: user }
-    let(:task) { create(:task, project: project) }
-    it 'successfully completes the task' do
-      sign_in user
-      project
-      task
-      task
+      sign_in task.project.user
       visit projects_path
       find(:css, 'i.t_uncompl').click
       expect(page).to have_content 'Task was successfully completed.'

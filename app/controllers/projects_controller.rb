@@ -1,20 +1,17 @@
 class ProjectsController < ApplicationController
-  before_action :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :find_project_with_tasks, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
-    @tasks = Task.all.order(:position)
   end
 
   def new
-    @project = Project.new
+    @project = current_user.projects.new
   end
 
   def create
-    @project = Project.create(project_params)
-    @project.user_id = current_user.id
-    if @project.valid?
-      @project.save
+    @project = current_user.projects.create(project_params)
+    if @project.save
       redirect_to projects_path, notice: 'Project was successfully created.'
     else
       render :new
@@ -44,8 +41,9 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:title, :tasks)
   end
 
-  def find_project
-    @project = Project.find(params[:id])
+  def find_project_with_tasks
+    @project = current_user.projects.find(params[:id])
+    @tasks = @project.tasks
   end
 
 end

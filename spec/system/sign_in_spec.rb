@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'ffaker'
 
 RSpec.describe 'Sign In', type: :system do
   context 'when existing user is sign in' do
@@ -14,11 +13,10 @@ RSpec.describe 'Sign In', type: :system do
 
     it 'user can not sign in with invalid data' do
       visit user_session_path
-      fill_in 'inputEmail', with: FFaker::Internet.email
-      fill_in 'inputPassword', with: FFaker::Internet.password
+      fill_in 'inputEmail', with: 'wrong email'
+      fill_in 'inputPassword', with: 'wrong password'
       click_button 'Log in'
       expect(page).to have_content('Log in')
     end
   end
 end
-

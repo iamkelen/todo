@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :project do
-    title { 'My project' }
+    title { FFaker::HipsterIpsum.sentence }
+    user
   end
 end
