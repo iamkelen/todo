@@ -10,10 +10,6 @@ class Task < ApplicationRecord
     move_lower if position == 'down'
   end
 
-  def completed?
-    !completed_at.blank?
-  end
-
   def future_date
     if date.present? && date < Date.today
       errors.add(:date, "can't be in the past")

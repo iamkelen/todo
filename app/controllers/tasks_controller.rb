@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task.update(completed_at: Time.now)
+    @task.toggle!(:completed)
     redirect_to projects_path, notice: 'Task was successfully completed.'
   end
 

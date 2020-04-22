@@ -15,6 +15,6 @@ RSpec.describe Task, type: :model do
     it { is_expected.to have_db_column(:title).of_type(:string) }
     it { is_expected.to have_db_column(:date).of_type(:date) }
     it { is_expected.to have_db_column(:position).of_type(:integer) }
-    it { is_expected.to have_db_column(:completed_at).of_type(:datetime) }
+    it { is_expected.to have_db_column(:completed).of_type(:boolean) }
   end
 end
