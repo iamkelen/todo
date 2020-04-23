@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @task = @project.tasks.build(task_params)
     if @task.save
-      redirect_to projects_path(@project), notice: 'Task was successfully created.'
+      redirect_to projects_path, notice: 'Task was successfully created.'
     else
       render :new
     end
