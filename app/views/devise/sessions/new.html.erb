@@ -1,6 +1,6 @@
 <div class='row justify-content-center'>
   <div class='col-4'>
-    <h2 class='text-center'>Log in</h2>
+    <h2 class='text-center'><%= t('.sign_in') %></h2>
 
     <% if notice %>
       <div class='alert alert-info'>
@@ -17,7 +17,7 @@
       <div class="form-group">
         <%= f.label :email, for: 'inputEmail' %><br />
         <%= f.email_field :email, id: 'inputEmail', class: 'form-control', autofocus: true, autocomplete: "email", placeholder: 'Email address' %>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-muted"><%= t('devise.registrations.small_id') %></small>
       </div>
 
       <div class="form-group">
@@ -33,7 +33,7 @@
       <% end %>
 
       <div class='text-center'>
-        <%= f.submit "Log in", class: 'btn btn-primary' %>
+        <%= f.submit t('.sign_in'), class: 'btn btn-primary' %>
       </div>
 
     <% end %>
