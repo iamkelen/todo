@@ -1,6 +1,6 @@
 <div class='row justify-content-center'>
   <div class='col-4'>
-    <h2 class='text-center'>Sign up</h2>
+    <h2 class='text-center'><%= t('.sign_up') %></h2>
 
     <% if notice %>
       <div class='alert alert-info'>
@@ -19,13 +19,13 @@
       <div class="form-group">
         <%= f.label :email, for: 'inputEmail' %><br />
         <%= f.email_field :email, id: 'inputEmail', class: 'form-control', autofocus: true, autocomplete: "email", placeholder: 'Email address' %>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-muted"><%= t('devise.registrations.small_id') %></small>
       </div>
 
       <div class="form-group">
-        <%= f.label :password, for: 'inputPassword' %><br />
+        <%= f.label :password, for: 'inputPassword' %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
         <% end %><br />
         <%= f.password_field :password, id: 'inputPassword', class: 'form-control', autocomplete: "new-password", placeholder: 'New password' %>
       </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class='text-center'>
-        <%= f.submit "Sign up", class: 'btn btn-primary' %>
+        <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
       </div>
     <% end %>
 

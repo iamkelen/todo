@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @task = @project.tasks.build(task_params)
     if @task.save
-      redirect_to projects_path, notice: 'Task was successfully created.'
+      redirect_to projects_path, notice: t(:success_create_task)
     else
       render :new
     end
@@ -21,7 +21,7 @@ class TasksController < ApplicationController
   def update
     if params[:position].present? || @task.update(task_params)
       @task.change_position(params[:position]) if params[:position].present?
-      redirect_to projects_path, notice: 'Task was successfully updated.'
+      redirect_to projects_path, notice: t(:success_update_task)
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
   def complete
     @task.toggle!(:completed)
-    redirect_to projects_path, notice: 'Task was successfully completed.'
+    redirect_to projects_path, notice: t(:success_complete_task)
   end
 
   private
